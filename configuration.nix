@@ -6,6 +6,11 @@ let
   # Package declaration
   # ---------------------
 
+    fenix = import (fetchTarball {
+    url = "https://github.com/nix-community/fenix/archive/main.tar.gz";
+    sha256 = "0zf8jlyqf9b125m7scz8g76cz79413p3wqpj3697hh95fh72bl9c";
+  }) {};
+
   pkgs = import inputs.hydenix.inputs.hydenix-nixpkgs {
     inherit (inputs.hydenix.lib) system;
     config.allowUnfree = true;
@@ -23,6 +28,105 @@ in
 
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
+  environment.systemPackages = with pkgs; [
+
+
+
+
+
+
+
+
+#hypr
+kdePackages.kio-admin 
+
+
+
+
+
+gnupg
+jdk
+
+ atk          
+  at-spi2-atk
+gobject-introspection
+ haskellPackages.glib
+pango
+haskellPackages.gi-gobject
+haskellPackages.gi-javascriptcore
+#haskellPackages.webkitgtk3-javascriptcore
+    cargo-tauri
+    pnpm
+    gobject-introspection
+    at-spi2-atk
+    atkmm
+    cairo
+    gdk-pixbuf
+    glib
+    gtk3
+    harfbuzz
+    librsvg
+    libsoup_3
+    pango
+    webkitgtk_4_1
+    openssl
+   pkg-config
+
+
+
+ #flutter
+  android-studio
+  clang
+  cmake
+  flutter
+  ninja
+  pkg-config
+
+
+
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+   wget
+gh
+go
+gparted
+kitty
+zsh
+wasm-pack
+gcc
+google-chrome
+telegram-desktop
+nodejs_20
+yarn
+    btop  # replacement of htop/nmon
+    iotop # io monitoring
+    iftop # network monitoring
+    spotify
+    docker
+    docker-compose  
+cachix
+livecaptions
+  #  (fenix.complete.withComponents [
+  #    "cargo"
+  #    "clippy"
+  #    "rust-src"
+  #    "rustc"
+  #    "rustfmt"
+  #  ])
+    rust-analyzer
+];
+
+     programs.adb.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+  services.pcscd.enable = true;
+
+  virtualisation.docker.enable = true;
+ 
+
+  virtualisation.podman.enable = true;
 
   imports = [
     inputs.hydenix.inputs.home-manager.nixosModules.home-manager
@@ -85,6 +189,7 @@ in
     timezone = "Asia/Kolkata"; # Change to your timezone
     locale = "en_CA.UTF-8"; # Change to your preferred locale
 
+
     /*
       Optionally edit the below values, or leave to use hydenix defaults
       visit ./modules/hm/default.nix for more options
@@ -108,6 +213,8 @@ in
       system.enable = true; # enable system module
     */
   };
+
+
 
   #! EDIT THESE VALUES (must match users defined above)
   users.users.oms = {

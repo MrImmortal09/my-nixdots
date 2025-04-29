@@ -5,7 +5,7 @@ Welcome to the Hydenix template!
 This template is designed to help you get started with Hydenix. It includes a basic configuration for Hydenix and some common modules.
 
 If you just templated this flake, you can follow these steps to get started:
-
+sudo nixos-rebuild switch --flake .
 1. edit `configuration.nix` with your preferences for hydenix
    - options needing to be changed are marked with `! EDIT`
    - (optional) in your template flake folder, review both `./configuration.nix` and `./modules/hm/default.nix` for more options
@@ -77,3 +77,4 @@ graph TD
 - Keep up with patches for stability
 - Update to minor versions for new features
   
+
