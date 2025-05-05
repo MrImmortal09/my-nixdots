@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   ...
 }:
@@ -8,7 +9,7 @@ let
 
     fenix = import (fetchTarball {
     url = "https://github.com/nix-community/fenix/archive/main.tar.gz";
-    sha256 = "0zf8jlyqf9b125m7scz8g76cz79413p3wqpj3697hh95fh72bl9c";
+    sha256 = "0kmpxd8i10n8xdgayhhq6bgb3cc8g9gskpgx2frablwjfaxrgzl5";
   }) {};
 
   pkgs = import inputs.hydenix.inputs.hydenix-nixpkgs {
@@ -30,16 +31,14 @@ in
   nixpkgs.pkgs = pkgs;
   environment.systemPackages = with pkgs; [
 
+whatsapp-for-linux
 
 
-
-
-
-
+direnv # visual studio code integration for fedimint
 
 #hypr
 kdePackages.kio-admin 
-
+gitFull
 
 
 
@@ -71,7 +70,7 @@ haskellPackages.gi-javascriptcore
     webkitgtk_4_1
     openssl
    pkg-config
-
+	
 
 
  #flutter
@@ -97,6 +96,7 @@ google-chrome
 telegram-desktop
 nodejs_20
 yarn
+obs-studio
     btop  # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
@@ -105,13 +105,13 @@ yarn
     docker-compose  
 cachix
 livecaptions
-  #  (fenix.complete.withComponents [
-  #    "cargo"
-  #    "clippy"
-  #    "rust-src"
-  #    "rustc"
-  #    "rustfmt"
-  #  ])
+
+      cargo
+      clippy
+
+      rustc
+      rustfmt
+
     rust-analyzer
 ];
 
@@ -143,7 +143,7 @@ livecaptions
 
     #! EDIT THIS SECTION
     # For NVIDIA setups
-    # inputs.hydenix.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+     inputs.hydenix.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
 
     # For AMD setups
     # inputs.hydenix.inputs.nixos-hardware.nixosModules.common-gpu-amd
@@ -179,6 +179,22 @@ livecaptions
         ];
       };
   };
+
+#MY GPU STUFF
+services.xserver.videoDrivers = ["nvidia"];
+hardware.nvidia = {
+	modesetting.enable = true;
+	powerManagement.enable = true;
+	powerManagement.finegrained = false;
+	open=false;
+	nvidiaSettings = true;
+
+};
+hardware.nvidia.prime = {
+	offload.enable = true;
+	intelBusId = "PCI:0:2:0";
+	nvidiaBusId = "PCI:1:0:0";	
+};
 
   # IMPORTANT: Customize the following values to match your preferences
   hydenix = {

@@ -3,6 +3,7 @@
 {
   imports = [
     # ./example.nix - add your modules here
+    ./confs
   ];
 
   home.file = {
@@ -10,10 +11,16 @@
       text = ''
         monitor= ,preferred,auto,1.25
       '';
+	
+
     };
-  }; 
+  };
+
+	
+
+ 
 hydenix.hm.editors.vscode.enable = false;   
-     
+hydenix.hm.git.enable = false;     
  # home-manager options go here
   home.packages = [
 pkgs.vlc
@@ -32,11 +39,12 @@ pkgs.polkit
 
 
 
-git = {
-        enable = true; # enable git module
-        name = "Om Swami"; # git user name eg "John Doe"
-        email = "reach.oms2004@gmail.com"; # git user email eg "john.doe@example.com"
-      };
+#git = {
+ #       enable = true; # enable git module
+  #      name = "Om Swami"; # git user name eg "John Doe"
+   #     email = "reach.oms2004@gmail.com"; # git user email eg "john.doe@example.com"
+
+   #   };
 
           
 
