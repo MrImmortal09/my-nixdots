@@ -30,7 +30,7 @@ in
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
   environment.systemPackages = with pkgs; [
-
+nautilus
 whatsapp-for-linux
 
 
@@ -39,8 +39,10 @@ direnv # visual studio code integration for fedimint
 #hypr
 kdePackages.kio-admin 
 gitFull
-
-
+papers
+ pro-office-calculator
+bc
+#haskellPackages.calculator
 
 
 gnupg
@@ -181,7 +183,7 @@ livecaptions
   };
 
 #MY GPU STUFF
-services.xserver.videoDrivers = ["nvidia"];
+services.xserver.videoDrivers = ["intel" "nvidia"];
 hardware.nvidia = {
 	modesetting.enable = true;
 	powerManagement.enable = true;
