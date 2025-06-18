@@ -30,12 +30,14 @@ in
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
   environment.systemPackages = with pkgs; [
+jetbrains.pycharm-professional
 nautilus
 whatsapp-for-linux
-
-
+brave
+tor
+obsidian
 direnv # visual studio code integration for fedimint
-
+mongodb-compass
 #hypr
 kdePackages.kio-admin 
 gitFull
