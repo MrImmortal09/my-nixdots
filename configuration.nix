@@ -27,9 +27,16 @@ let
 in
 {
 
+
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
   environment.systemPackages = with pkgs; [
+teamviewer
+python312Packages.conda # conda
+conda # conda-shell only
+anydesk
+python312Packages.google-generativeai #python dev
+streamlit # for python dev
 jetbrains.pycharm-professional
 nautilus
 whatsapp-for-linux
@@ -137,7 +144,7 @@ livecaptions
     ./hardware-configuration.nix
     inputs.hydenix.lib.nixOsModules
     ./modules/system
-
+	./fedimint.nix
     # === GPU-specific configurations ===
 
     /*
@@ -233,7 +240,8 @@ hardware.nvidia.prime = {
       system.enable = true; # enable system module
     */
   };
-
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = true;
 
 
   #! EDIT THESE VALUES (must match users defined above)
@@ -241,7 +249,8 @@ hardware.nvidia.prime = {
     isNormalUser = true; # Regular user account
     initialPassword = "6679"; # Default password (CHANGE THIS after first login with passwd)
     extraGroups = [
-      "wheel" # For sudo access
+"docker"    
+  "wheel" # For sudo access
       "networkmanager" # For network management
       "video" # For display/graphics access
       # Add other groups as needed
