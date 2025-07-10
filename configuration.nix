@@ -31,15 +31,14 @@ in
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
   environment.systemPackages = with pkgs; [
-teamviewer
+
+davinci-resolve # video editor
 python312Packages.conda # conda
 conda # conda-shell only
-anydesk
 python312Packages.google-generativeai #python dev
 streamlit # for python dev
 jetbrains.pycharm-professional
 nautilus
-whatsapp-for-linux
 brave
 tor
 obsidian
